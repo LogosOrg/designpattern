@@ -1,8 +1,14 @@
 package designpatterns.strategy;
 
 public class MonterreyMilk implements Milk {
+    String proteinStatus = "No thanks";
+
     public void moreProtein(){
-        System.out.println("Milk from Toronto has more protein.");
+        this.proteinStatus = "More protein.";
+    }
+
+    public String getProteinStatus(){
+        return this.proteinStatus;
     }
 
     public String getName(){

@@ -1,11 +1,18 @@
 package designpatterns.strategy;
 
 public class Capuchino implements Coffee {
+    String moreCaffeine = "No thanks";
+
     public void moreCaffeine(){
-        System.out.println("Capuchino needs more caffeine.");
+        this.moreCaffeine = "More caffeine";
     }
 
     public String getName(){
         return "Capuchino";
+    }
+
+    @Override
+    public String getCaffeineStatus() {
+        return this.moreCaffeine;
     }
 }

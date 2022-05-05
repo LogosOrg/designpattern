@@ -19,9 +19,11 @@ public abstract class Starbucks {
 
     public void display(){
         System.out.println("-----------------------------------");
-        System.out.println("Name of the City : " + this.city);
-        System.out.println("Name of the Coffee : " + coffee.getName());
-        System.out.println("Name of the Milk : " + milk.getName());
+        System.out.println("City : " + this.city);
+        System.out.println("Coffee : " + coffee.getName());
+        System.out.println("Milk : " + milk.getName());
+        System.out.println("More Caffeine : " + coffee.getCaffeineStatus());
+        System.out.println("More Protein : " + milk.getProteinStatus());
         System.out.println("-----------------------------------");
 
     };
@@ -33,5 +35,7 @@ public abstract class Starbucks {
     public void moreProtein(){
         milk.moreProtein();
     }
+
+   
     
 }

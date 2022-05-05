@@ -1,11 +1,18 @@
 package designpatterns.strategy;
 
 public class Latte implements Coffee {
+    String caffeineStatus = "No thanks";
+
+    public String getCaffeineStatus(){
+        return this.caffeineStatus;
+    }
+
     public void moreCaffeine() {
-        System.out.println("Late needs More Caffeine");
+        this.caffeineStatus ="More Caffeine";
     }
 
     public String getName(){
         return "Latte";
     }
+
 }
