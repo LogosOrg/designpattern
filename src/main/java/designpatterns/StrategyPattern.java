@@ -7,9 +7,9 @@ public class StrategyPattern {
 	public static void main(String[] args) {
 		
 		
-		System.out.println("Character 생성");
-		Character userA = new Elf("흑염룡");
-		Character userB = new Dewarf("음악은 국가가 허락한 마약");
+		System.out.println("Elf and Dewarf");
+		Character userA = new Elf("ElfId");
+		Character userB = new Dewarf("DewarfId");
 		
 		ArrayList<Attack> attackList = new ArrayList<>();
 		attackList.add(new AttackHigh());
@@ -45,18 +45,16 @@ interface Attack {
 class AttackHigh implements Attack {
 	@Override
 	public void attack() {
-		System.out.println("logic 1: 날아가기");
-		System.out.println("logic 2: 칼을 들어서");
-		System.out.println("logic 3: 어깨 찌르기");
+		System.out.println("logic 1: AttackHigh");
+		
 	}
 }
 
 class AttackLow implements Attack {
 	@Override
 	public void attack() {
-		System.out.println("logic 1: 달려가기");
-		System.out.println("logic 2: 몸을 숙여서");
-		System.out.println("logic 3: 다리 베기");
+		System.out.println("logic 1: AttackLow");
+		
 	}
 }
 
@@ -67,18 +65,17 @@ interface Defend {
 class GuardHigh implements Defend {
 	@Override
 	public void defend() {
-		System.out.println("logic 1: 왼발을 뒤로 빼고");
-		System.out.println("logic 2: 방패를 높인뒤");
-		System.out.println("logic 3: 상체 보호하기");
+		System.out.println("logic 1: GuardHigh");
+		
 	}
 }
 
 class GuardLow implements Defend {
 	@Override
 	public void defend() {
-		System.out.println("logic 1: 몸을 숙이고");
-		System.out.println("logic 2: 방패를 내린뒤");
-		System.out.println("logic 3: 하체를 보호하기");
+		System.out.println("logic 1: Defend logic 1");
+		System.out.println("logic 2: Defend logic 2");
+		System.out.println("logic 3: Defend logic 3");
 	}
 }
 
@@ -120,14 +117,14 @@ abstract class Character {
 class Dewarf extends Character {
 	public Dewarf(String id) {
 		this.id = id;
-		this.race = "난쟁이 포식자";
+		this.race = "Dewarf";
 	}
 }
 
 class Knight extends Character {
 	public Knight(String id) {
 		this.id = id;
-		this.race = "우락부락 갑옷 기사";
+		this.race = "Knight";
 	}
 }
 
@@ -135,7 +132,7 @@ class Elf extends Character {
 
 	public Elf(String id) {
 		this.id = id;
-		this.race = "날씬한 미녀";
+		this.race = "Elf";
 	}
 	
 }
