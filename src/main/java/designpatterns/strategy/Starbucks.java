@@ -3,9 +3,10 @@ package designpatterns.strategy;
 public abstract class Starbucks {
     Coffee coffee;
     Milk milk;
+    String city;
 
-    public Starbucks(){
-
+    public Starbucks(String city){
+        this.city = city;
     }
 
     public void setCoffee(Coffee cf){
@@ -17,8 +18,12 @@ public abstract class Starbucks {
     }
 
     public void display(){
-        
-        System.out.println(coffee.getName() + milk.getName());
+        System.out.println("-----------------------------------");
+        System.out.println("Name of the City : " + this.city);
+        System.out.println("Name of the Coffee : " + coffee.getName());
+        System.out.println("Name of the Milk : " + milk.getName());
+        System.out.println("-----------------------------------");
+
     };
 
     public void moreCaffeine(){
