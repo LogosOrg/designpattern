@@ -3,13 +3,10 @@ package designpatterns.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeatherData implements Subject {
+public class ITConsultingService implements Subject {
     private List<Observer> observers;
-    private float temperature;
-    private float humidity;
-    private float pressure;
-
-    public WeatherData() {
+    
+    public ITConsultingService() {
         observers = new ArrayList<Observer>();
     }
     
@@ -23,7 +20,7 @@ public class WeatherData implements Subject {
 
     public void notifyObservers(){
         for (Observer observer : observers) {
-            observer.update(temperature, humidity, pressure);
+            observer.update();
         }
     }
 
