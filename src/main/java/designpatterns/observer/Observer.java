@@ -1,5 +1,5 @@
 package designpatterns.observer;
 
-public interface myObserver {
-    public void update();
+public interface Observer {
+    public void update(int answer);
 }
