@@ -20,6 +20,9 @@ public class ITConsultingService implements Subject {
 
     public void notifyObservers(Observer o, int answer) {
         o.update(answer);
+        if(o.isSolved()){
+            removeObserver(o);
+        }
     }
 
     public void somethingChanged(Observer o, int answer) {
@@ -30,8 +33,12 @@ public class ITConsultingService implements Subject {
         somethingChanged(o, answer);
     }
 
-    public void getPendingList() {
-        System.out.println(observers);
+    public int getSizeOfObserverList() {
+        return observers.size();
+    }
+
+    public Observer getObserver(int n){
+        return observers.get(n);
     }
 
 }
