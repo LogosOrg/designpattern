@@ -24,14 +24,12 @@ public class ITConsultingService implements Subject {
         }
     }
 
-    public void measurementsChanged(){
+    public void somethingChanged(){
         notifyObservers();
     }
 
-    public void setMeasurements(float temperature, float humidity, float pressure){
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.pressure = pressure;
-        measurementsChanged();
+    public void AnswerToCustomers(){
+        
+        somethingChanged();
     }
 }

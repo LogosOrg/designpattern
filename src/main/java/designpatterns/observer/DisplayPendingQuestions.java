@@ -1,5 +1,5 @@
 package designpatterns.observer;
 
-public interface DisplayElement {
+public interface DisplayPendingQuestions {
     public void display();
 }
