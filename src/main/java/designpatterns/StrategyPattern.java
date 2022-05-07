@@ -40,7 +40,7 @@ public class StrategyPattern {
 class AttackFactory {
 
 	private final static AttackHigh ATTACK_HIGH =  new AttackHigh(); //service - rule - tax - 13 % etc... policy 1
-	private final static AttackHigh ATTACK_LOW =  new AttackHigh(); //service - rule - tax - 10 % etc ... policy 2
+	private final static AttackHigh ATTACK_LOW =  new AttackLow(); //service - rule - tax - 10 % etc ... policy 2
 	
 	public static Attack getAttack(String attackType) {
 		switch (attackType) {
