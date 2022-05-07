@@ -7,12 +7,16 @@ public class ObserverDesignPattern {
 
 	public static void main(String[] args) {
 		Preacher pastor = new Preacher();
-		Observer korean = new KoreanUser();
+		Observer korean = new KoreanUser("Soobin");
+		Observer korean2 = new KoreanUser("Choongil");
 		Observer japanese = new JapaneseUser();
 		Observer chineses = new ChineseUser();
+		
 		pastor.registerUser(korean);
 		pastor.registerUser(japanese);
 		pastor.registerUser(chineses);
+		pastor.registerUser(korean2);
+		//실제 live streaming
 		pastor.setScript("hello everyone");
 		pastor.setScript("nice to meet you");
 		System.out.println("중국인이 흥미 없어서 퇴장 하였습니다.");
@@ -26,13 +30,17 @@ public class ObserverDesignPattern {
 interface Subject{
 	void registerUser(Observer observer);
 	void removeUser(Observer observer);
-	void sendScripts();
+	void sendLiveComment();
+}
+
+interface Observer{
+	void translateLiveComment(String scripts);
 }
 
 class Preacher implements Subject{
 
 	List<Observer> listeners = new ArrayList<>();
-	String script = "";
+	String comment = "";
 	@Override
 	public void registerUser(Observer observer) {
 		listeners.add(observer);
@@ -44,30 +52,41 @@ class Preacher implements Subject{
 	}
 
 	@Override
-	public void sendScripts() {
-		listeners.forEach(e -> e.translateScripts(script));
+	public void sendLiveComment() {
+		listeners.forEach(e -> e.translateLiveComment(comment));
 	}
 	
 	public void setScript(String newComments) {
-		this.script = newComments;
-		sendScripts();
+		this.comment = newComments;
+		sendLiveComment();
 	}
 }
 
-interface Observer{
-	void translateScripts(String scripts);
+
+abstract class UserInfo{
+	String name;
+	
+	public void displayUserInfo() {
+		System.out.println("name:" + name);
+	}
 }
 
-class KoreanUser implements Observer{
+class KoreanUser extends UserInfo implements Observer{
+		
+	public KoreanUser(String name) {
+		this.name = name;
+		displayUserInfo();
+	}
+	
 	@Override
-	public void translateScripts(String scripts) {
+	public void translateLiveComment(String scripts) {
 		System.out.println(scripts + " 한국어 번안 로직 실행");
 	}	
 }
 
 class JapaneseUser implements Observer{
 	@Override
-	public void translateScripts(String scripts) {
+	public void translateLiveComment(String scripts) {
 		System.out.println(scripts + " 일본어 번안 로직 실행");
 	}	
 }
@@ -75,8 +94,19 @@ class JapaneseUser implements Observer{
 class ChineseUser implements Observer{
 
 	@Override
-	public void translateScripts(String scripts) {
+	public void translateLiveComment(String scripts) {
 		System.out.println(scripts + " 중국어 번안 로직 실행");
 	}
 	
 }
+
+class GermanUser implements Observer{
+
+	@Override
+	public void translateLiveComment(String scripts) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
