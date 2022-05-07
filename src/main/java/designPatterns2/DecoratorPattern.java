@@ -1,8 +1,5 @@
 package designPatterns2;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DecoratorPattern {
 
 	public static void main(String[] args) {
@@ -51,6 +48,7 @@ class TakeSword extends Action {
 }
 
 class SwordAttackHigh extends Action {
+	
 	public SwordAttackHigh(Act act) {
 		this.act = act;
 	}
@@ -61,6 +59,19 @@ class SwordAttackHigh extends Action {
 	}
 }
 
+class BonusAttack extends Action{
+
+	public BonusAttack(Act act) {
+		this.act = act;
+	}
+	
+	@Override
+	public String action() {
+		return act.action() + " bonus attack!!!";
+	}
+	
+}
+
 class AttackHigh extends Act implements Attack {
 
 	@Override
@@ -68,10 +79,12 @@ class AttackHigh extends Act implements Attack {
 //		System.out.println("logic 1: ³¯¾Æ°¡±â");
 //		System.out.println("logic 2: Ä®À» µé¾î¼­");
 //		System.out.println("logic 3: ¾î±ú Âî¸£±â");
-		Act act = new AttackHigh();
-		act = new Fly(act);
-		act = new TakeSword(act);
-		act = new SwordAttackHigh(act);
-		System.out.print(act.action());
+		Act acttackHigh = new AttackHigh();
+		Act fly = new Fly(acttackHigh);
+		Act takeSword = new TakeSword(fly);
+		Act swordAttackHigh = new SwordAttackHigh(takeSword);
+		Act bonusAttack = new BonusAttack(swordAttackHigh);
+		System.out.print(bonusAttack.action());
 	}
 }
+
