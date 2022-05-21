@@ -5,34 +5,52 @@ import java.util.Random;
 
 public class StrategyPattern {
 	public static void main(String[] args) {
-		
-		
+
 		System.out.println("Character »ý¼º");
 		Character userA = new Elf("Èæ¿°·æ");
 		Character userB = new Dewarf("À½¾ÇÀº ±¹°¡°¡ Çã¶ôÇÑ ¸¶¾à");
-		
+
 		ArrayList<Attack> attackList = new ArrayList<>();
-		attackList.add(new AttackHigh());
-		attackList.add(new AttackLow());
-		
+		attackList.add(AttackFactory.getAttack("attackHigh"));
+		attackList.add(AttackFactory.getAttack("attackLow"));
+
 		ArrayList<Defend> defendList = new ArrayList<>();
 		defendList.add(new GuardHigh());
 		defendList.add(new GuardLow());
-		
+
 		Random rn = new Random();
-		
-		for(int i=0; i<10; i++){
-			
-			Character attacker = i%2==0? userA: userB;
-			Character defender = attacker.equals(userA)? userB: userA;
+
+		for (int i = 0; i < 10; i++) {
+
+			Character attacker = i % 2 == 0 ? userA : userB;
+			Character defender = attacker.equals(userA) ? userB : userA;
 			System.out.println("\n turn " + i);
 			System.out.println("------------------");
 			System.out.println("Attacker: " + attacker.id);
 			System.out.println("Defender: " + defender.id);
-			attacker.setSelectedAttack(attackList.get(rn.nextInt(2)));		
+			attacker.setSelectedAttack(attackList.get(rn.nextInt(2)));
 			defender.setSelectedDefend(defendList.get(rn.nextInt(2)));
 			attacker.displayAttack();
 			defender.displayDefend();
+		}
+	}
+
+}
+
+class AttackFactory {
+
+	private final static AttackHigh ATTACK_HIGH =  new AttackHigh(); //service - rule - tax - 13 % etc... policy 1
+	private final static AttackLow ATTACK_LOW =  new AttackLow(); //service - rule - tax - 10 % etc ... policy 2
+	
+	public static Attack getAttack(String attackType) {
+		switch (attackType) {
+		case "attackHigh":
+			return ATTACK_HIGH;
+		case "attackLow":
+			return ATTACK_LOW;
+		default:
+			return ATTACK_HIGH; // this is a default attack if user does not define any attack type in runtime
+										// (timelimit: 30seconds)
 		}
 	}
 
@@ -101,12 +119,12 @@ abstract class Character {
 		System.out.println(race);
 		performAttack();
 	}
-	
+
 	public void displayDefend() {
 		System.out.println(race);
 		performDefend();
 	}
-	
+
 	public void setSelectedAttack(Attack selectedAttack) {
 		this.selectedAttack = selectedAttack;
 	}
@@ -115,7 +133,6 @@ abstract class Character {
 		this.selectedDefend = selectedDefend;
 	}
 }
-
 
 class Dewarf extends Character {
 	public Dewarf(String id) {
@@ -137,5 +154,5 @@ class Elf extends Character {
 		this.id = id;
 		this.race = "³¯¾ÀÇÑ ¹Ì³à";
 	}
-	
+
 }
